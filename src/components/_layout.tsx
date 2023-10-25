@@ -2,12 +2,13 @@ import Head from 'next/head';
 import AppBar from './AppBar';
 import styled from 'styled-components';
 import Footer from './Footer';
+import { ReactNode } from 'react';
 
 const StyledMain = styled.main`
     padding-inline: 120px;
 `
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <>
             <Head>
