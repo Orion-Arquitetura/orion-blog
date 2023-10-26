@@ -1,15 +1,24 @@
 import Image from "next/image";
+import Link from "next/link";
 import styled from "styled-components";
 
 const StyledAppBar = styled.div`
     display: flex;
     justify-content: space-between;
     padding-inline: 120px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 37px 50px 0px #000000a0;
 
     position: sticky;
     top: 0;
     z-index: 10;
-    background-color: rgb(12, 12, 12);
+    background-color: rgba(0, 0, 0, 0.515);
+
+    .logo-wrapper {
+        width: 200px;
+        height: 100px;
+        position: relative;
+    }
 
     .nav-and-button-div {
         display: flex;
@@ -56,7 +65,9 @@ const StyledAppBar = styled.div`
 export default function AppBar() {
     return (
         <StyledAppBar>
-            <Image src={"/orion-white-logo.svg"} alt="Logo" width={"160"} height={"120"} />
+            <Link href={"/"} className="logo-wrapper">
+                <Image src={"/Logotipo_ORION-branco.png"} alt="Logo" fill />
+            </Link>
 
             <div className="nav-and-button-div">
                 <nav>
@@ -66,9 +77,6 @@ export default function AppBar() {
                         </li>
                         <li>
                             <a href="#">NA MÍDIA</a>
-                        </li>
-                        <li>
-                            <a href="#">CASES</a>
                         </li>
                         <li>
                             <a href="#">ORION.COM</a>

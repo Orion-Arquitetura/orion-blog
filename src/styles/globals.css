@@ -20,11 +20,17 @@ ul {
   list-style-type: none;
 }
 
+a {
+  color: inherit;
+}
+
 a,
 button {
   cursor: pointer;
 }
 
 body {
-  background-color: rgb(12, 12, 12);
+  background-image: url("/Painel_Estelar.png");
+  background-size: 100%;
+  background-attachment: fixed;
 }

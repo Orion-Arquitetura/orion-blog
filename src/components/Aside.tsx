@@ -6,60 +6,12 @@ import { useState } from "react";
 const StyledAside = styled.aside`
   position: sticky;
   position: -webkit-sticky;
-  top: 20px;
+  top: 140px;
   height: fit-content;
   display: flex;
   flex-direction: column;
   row-gap: 24px;
   color: white;
-
-  .aside-links {
-    display: flex;
-    flex-direction: column;
-    row-gap: 6px;
-    width: 80%;
-    margin-inline: auto;
-
-    a {
-        color: inherit;
-        padding: 10px 0;
-        text-align: center;
-        font-size: 0.938em;
-        position: relative;
-
-        &::after {
-                content: "";
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                background-color: rgba(0,0,0,0);
-                transition: background-color 0.3s ease;
-            }
-
-        &:hover {
-            &::after {
-                background-color: rgba(0,0,0,0.3);
-            }
-        }
-    }
-
-    a:nth-of-type(1) {
-        background-color: #56AD21;
-    }
-
-    a:nth-of-type(2) {
-        background-color: #2C639A;
-    }
-
-    a:nth-of-type(3) {
-        background-color: #8E0F78;
-    }
-    a:nth-of-type(4) {
-        background-color: #FF401B;
-    }
-  }
 
   .aside-social-media-div {
     width: 80%;
@@ -67,9 +19,8 @@ const StyledAside = styled.aside`
 
     ul {
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
         column-gap: 8px;
-        padding-right: 10px;
 
         li {
             background: white;
@@ -149,14 +100,7 @@ export default function Aside() {
     return (
         <StyledAside>
             <NewsletterForm />
-
-            <div className="aside-links">
-                <a href="#">CORPORATIVO</a>
-                <a href="#">SAÚDE</a>
-                <a href="#">INDUSTRIAL</a>
-                <a href="#">VAREJO</a>
-            </div>
-
+            
             <div className="aside-social-media-div">
                 <ul>
                     <li>
@@ -178,7 +122,7 @@ export default function Aside() {
                     {postsDestaque.map(post => {
                         return (
                             <li key={post.titulo} className="destaque-post">
-                                <h4>{post.titulo}</h4>
+                                <a href={"#"}><h4>{post.titulo}</h4></a>
                                 <p>{post.resumo.length > 150 ? post.resumo.slice(0, 150) + "..." : post.resumo}</p>
                             </li>
                         )

@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
+import Link from "next/link";
 import styled from "styled-components";
 
 const StyledPost = styled.li`
@@ -70,15 +71,15 @@ export default function HomePagePost({
 }) {
     return (
         <StyledPost>
-            <a className='image-parent-context' href="#">
+            <Link className='image-parent-context' href={"/posts"}>
                 <img src={imagem} alt="Orion" />
-            </a>
-            <a className='post-link' href="#">
+            </Link>
+            <Link className='post-link' href={"/posts"}>
                 <small>{data}</small>
                 <h3>{titulo}</h3>
-            </a>
+            </Link>
             <p>{resumo.length > 150 ? resumo.slice(0, 150) + "..." : resumo}</p>
-            <a className="continuar-lendo">CONTINUAR LENDO</a>
+            <Link href={"/posts"} className="continuar-lendo">CONTINUAR LENDO</Link>
         </StyledPost>
     );
 }

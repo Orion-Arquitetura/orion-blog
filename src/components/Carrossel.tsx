@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useState } from "react";
 import styled from "styled-components";
 
@@ -91,18 +92,21 @@ export default function Carrossel() {
       title: "Projeto de Enfermaria Multiprofissional",
       date: "24/10/2023",
       description: "Este projeto de enfermaria multiprofissional visa melhorar o ambiente hospitalar, proporcionando um espaço confortável e funcional para pacientes e equipes médicas. Saiba mais sobre como a arquitetura hospitalar pode transformar o atendimento de saúde.",
+      url: "/posts"
     },
     {
       img: "https://orionarquitetura.com.br/wp-content/uploads/2022/12/orion-arquitetura-hospitalar-no-rj-consultorio-de-pediatria-jpg-124.jpg",
       title: "Design Inovador para Consultório de Pediatria",
       date: "20/10/2023",
       description: "Descubra como o design arquitetônico inovador está sendo aplicado para criar consultórios de pediatria acolhedores e amigáveis para crianças, proporcionando um ambiente de tratamento seguro e agradável.",
+      url: "/posts"
     },
     {
       img: "https://orionarquitetura.com.br/wp-content/uploads/2022/12/orion-arquitetura-hospitalar-no-rj-biomedicina-estetica-capa-jpg-124.jpg",
       title: "Estética e Funcionalidade na Biomedicina Estética",
       date: "14/07/2023",
       description: "A integração de estética e funcionalidade é fundamental na arquitetura de espaços para biomedicina estética. Saiba como a arquitetura hospitalar desempenha um papel importante na criação de clínicas de beleza modernas e eficientes.",
+      url: "/posts"
     }
   ]);
 
@@ -137,13 +141,13 @@ export default function Carrossel() {
                 key={post.title}
                 style={{ backgroundImage: `url(${post.img})` }}
               >
-                <a className="carrossel-item-link-backdrop" href="#">
+                <Link className="carrossel-item-link-backdrop" href={post.url}>
                   <div className="carrossel-item-link-data">
                     <p>{post.description}</p>
                     <h2>{post.title}</h2>
                     <small>{post.date}</small>
                   </div>
-                </a>
+                </Link>
               </div>
             );
           })}

@@ -22,7 +22,7 @@ const StyledFooter = styled.footer`
 export default function Footer() {
     return (
         <StyledFooter>
-            <img src="/orion-white-logo.svg" alt="Orion" width={100} />
+            <img src="/SIMBOLO_ORION.png" alt="Orion" width={100} />
 
             <div className="address-div">
                 <p>
