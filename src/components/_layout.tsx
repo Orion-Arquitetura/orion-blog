@@ -15,7 +15,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 <title>Blog - Orion Arquitetura</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <meta name="description" content="Blog da Orion Arquitetura" />
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/SIMBOLO_ORION.png" />
+                <meta property="og:image" content="/ORION_Logotipo.png" />
+                <meta name="twitter:image" content="/ORION_Logotipo.png" />
             </Head>
             <AppBar />
             <StyledMain>
