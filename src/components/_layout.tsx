@@ -6,6 +6,7 @@ import { ReactNode } from 'react';
 
 const StyledMain = styled.main`
     padding-inline: 120px;
+    min-height: 100vh;
 `
 
 export default function RootLayout({ children }: { children: ReactNode }) {

@@ -73,16 +73,16 @@ export default function AppBar() {
                 <nav>
                     <ul>
                         <li>
-                            <a href="#">BLOG</a>
+                            <Link href="/">BLOG</Link>
                         </li>
                         <li>
-                            <a href="#">NA MÍDIA</a>
+                            <Link href="#">NA MÍDIA</Link>
                         </li>
                         <li>
-                            <a href="#">ORION.COM</a>
+                            <Link href="https://orionarquitetura.com.br" target="_blank">ORION.COM</Link>
                         </li>
                         <li>
-                            <a href="#">CONTATO</a>
+                            <Link href="#">CONTATO</Link>
                         </li>
                     </ul>
                 </nav>
