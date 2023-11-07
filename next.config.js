@@ -6,7 +6,8 @@ const nextConfig = {
   },
   images: {
     remotePatterns: [
-      { protocol: "https", hostname: "orionarquitetura.com.br" }
+      { protocol: "https", hostname: "orionarquitetura.com.br" },
+      { protocol: "https", hostname: "media.canva.com" }
     ]
   }
 }

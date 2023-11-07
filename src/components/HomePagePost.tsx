@@ -63,23 +63,25 @@ export default function HomePagePost({
     data,
     imagem,
     resumo,
+    _id
 }: {
     titulo: string;
     data: string;
     imagem: string;
     resumo: string;
+    _id: string
 }) {
     return (
         <StyledPost>
-            <Link className='image-parent-context' href={"/posts"}>
+            <Link className='image-parent-context' href={`/post?id=${_id}`}>
                 <img src={imagem} alt="Orion" />
             </Link>
-            <Link className='post-link' href={"/posts"}>
+            <Link className='post-link' href={`/post?id=${_id}`}>
                 <small>{data}</small>
                 <h3>{titulo}</h3>
             </Link>
             <p>{resumo.length > 150 ? resumo.slice(0, 150) + "..." : resumo}</p>
-            <Link href={"/posts"} className="continuar-lendo">CONTINUAR LENDO</Link>
+            <Link href={`/post?id=${_id}`} className="continuar-lendo">CONTINUAR LENDO</Link>
         </StyledPost>
     );
 }
