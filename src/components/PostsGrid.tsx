@@ -26,7 +26,7 @@ export default function PostsGrid() {
 
     return (
         <StyledGrid>
-            {!isLoading && posts.data.map(post => {
+            {!isLoading && posts.data.map((post:any) => {
                 return (
                     <HomePagePost key={post.titulo} titulo={post.titulo} data={formatDate(post.createdAt)} imagem={post.imagemBanner} resumo={post.resumo} _id={post._id} />
                 )
