@@ -31,6 +31,10 @@ h4 {
             padding: 3px 0;
         }
     }
+
+    @media (max-width: 1000px) {
+        margin-inline: 0;
+  }
 `;
 
 export default function NewsletterForm() {

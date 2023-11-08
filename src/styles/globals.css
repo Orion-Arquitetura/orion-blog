@@ -33,4 +33,8 @@ body {
   background-image: url("/Painel_Estelar.png");
   background-size: 100%;
   background-attachment: fixed;
+
+  @media (max-width: 1000px) {
+    background-size: cover;
+  }
 }

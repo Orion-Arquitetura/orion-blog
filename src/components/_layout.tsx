@@ -7,6 +7,10 @@ import { ReactNode } from 'react';
 const StyledMain = styled.main`
     padding-inline: 120px;
     min-height: 100vh;
+
+    @media (max-width: 1000px) {
+        padding-inline: 5%;
+    }
 `
 
 export default function RootLayout({ children }: { children: ReactNode }) {

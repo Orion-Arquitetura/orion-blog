@@ -10,6 +10,11 @@ const StyledGrid = styled.div`
   height: fit-content;
   margin-top: 36px;
   padding-bottom: 100px;
+
+  @media (max-width: 1000px) {
+    grid-template-columns: 1fr;
+    padding-bottom: 30px;
+  } 
 `;
 
 export default function Home() {

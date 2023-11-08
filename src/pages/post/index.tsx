@@ -1,9 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 import Aside from "@/components/Aside";
 import { useGetOnePost } from "@/hooks/posts";
 import { GetServerSidePropsContext } from "next";
 import Image from "next/image";
 import styled from "styled-components";
-import DOMPurify from "dompurify"
+import DOMPurify from "dompurify";
 
 const StyledSection = styled.section`
   position: relative;
@@ -11,11 +12,13 @@ const StyledSection = styled.section`
 
   .banner-image-wrapper {
     margin-inline: auto;
-    height: 60vh;
+    height: 65vh;
     background-color: azure;
 
     img {
       object-fit: cover;
+      width: 100%;
+      height: 100%;
     }
 
     position: relative;
@@ -23,21 +26,21 @@ const StyledSection = styled.section`
 
   .body-and-aside-wrapper {
     display: grid;
-  grid-template-columns: 70% 30%;
-  margin-top: 46px;
+    grid-template-columns: 70% 30%;
+    margin-top: 46px;
   }
 
   .post-body {
     .post-main-title {
-    margin-bottom: 46px;
-    font-size: 2rem;
-  }
-   p {
-    margin: 26px 0;
-    &:first-of-type {
-      margin-top: 0;
+      margin-bottom: 46px;
+      font-size: 2rem;
     }
-   }
+    p {
+      margin: 26px 0;
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
   }
 
   .post-feedback {
@@ -56,11 +59,11 @@ const StyledSection = styled.section`
         background-color: transparent;
         border: none;
         background-size: contain;
-  
+
         &[value="up"] {
           background-image: url("/thumb_up.png");
         }
-  
+
         &[value="down"] {
           background-image: url("/thumb_down.png");
         }
@@ -94,32 +97,48 @@ const StyledSection = styled.section`
     }
   }
 
+  @media (max-width: 1000px) {
+    .body-and-aside-wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      margin-top: 46px;
+      margin-bottom: 46px;
+    }
+
+    .post-body {
+      margin-bottom: 46px;
+    }
+
+    .post-feedback {
+      margin-top: 46px;
+      flex-direction: column-reverse;
+      row-gap: 20px;
+    }
+  }
 `;
 
 export default function PostPage({ postID }: { postID: string }) {
-
-  const { data: post, isLoading } = useGetOnePost(postID)
-  console.log(post)
-
-  const sanitizedContent = "ok"
+  const { data: post, isLoading } = useGetOnePost(postID);
 
   if (isLoading) {
-    return <div>Carregando...</div>
+    return <div>Carregando...</div>;
   }
 
   return (
     <StyledSection>
       <div className="banner-image-wrapper">
-        <Image fill src={isLoading ? "/ORION_Logotipo.png" : post.data.imagemBanner} alt="Orion" />
+        <img src={isLoading ? "/ORION_Logotipo.png" : post.data.imagemBanner} alt="Orion" />
       </div>
 
       <div className="body-and-aside-wrapper">
         <div className="post-body">
-          <h1 className="post-main-title">
-            {post.data.titulo}
-          </h1>
+          <h1 className="post-main-title">{post.data.titulo}</h1>
 
-          <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.data.conteudo, { USE_PROFILES: { html: true } }) }} ></div>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(post.data.conteudo, { USE_PROFILES: { html: true } }),
+            }}
+          ></div>
 
           <div className="post-feedback">
             <div className="share-post-div">
@@ -142,31 +161,20 @@ export default function PostPage({ postID }: { postID: string }) {
               <button value="up" title="Gostei! 😆" />
               <button value="down" title="Não gostei. 😒" />
             </div>
-
           </div>
         </div>
         <Aside />
       </div>
-
     </StyledSection>
   );
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const query = context.query
-  console.log(query.id)
+  const query = context.query;
 
   return {
     props: {
-      postID: query.id
-    }
-  }
+      postID: query.id,
+    },
+  };
 }
-
-// export async function getStaticPaths() {
-
-// }
-
-// export async function getStaticProps() {
-
-// }

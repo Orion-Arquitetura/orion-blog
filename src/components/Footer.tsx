@@ -1,38 +1,51 @@
 /* eslint-disable @next/next/no-img-element */
-import styled from "styled-components"
+import styled from "styled-components";
 
 const StyledFooter = styled.footer`
-    padding: 30px 120px;
-    color: white;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    column-gap: 36px;
+  padding: 30px 120px;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 36px;
+
+  .address-div {
+    font-size: 0.7rem;
+    width: 20%;
+  }
+
+  .contact-div {
+    font-size: 2rem;
+  }
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    padding: 0 0 50px 0;
 
     .address-div {
-        font-size: 0.7rem;
-        width: 20%;
+      font-size: 0.7rem;
+      width: 80%;
+      text-align: center;
     }
 
     .contact-div {
-        font-size: 2rem;
+      font-size: 1rem;
     }
+  }
 `;
 
 export default function Footer() {
-    return (
-        <StyledFooter>
-            <img src="/SIMBOLO_ORION.png" alt="Orion" width={100} />
+  return (
+    <StyledFooter>
+      <img src="/SIMBOLO_ORION.png" alt="Orion" width={100} />
 
-            <div className="address-div">
-                <p>
-                    Av. Pastor Martin Luther King Júnior, 126 - Office 1000, Sala 602
-                </p>
-            </div>
+      <div className="address-div">
+        <p>Av. Pastor Martin Luther King Júnior, 126 - Office 1000, Sala 602</p>
+      </div>
 
-            <div className="contact-div">
-                <p>(21) 98888-8888</p>
-            </div>
-        </StyledFooter>
-    )
+      <div className="contact-div">
+        <p>(21) 98888-8888</p>
+      </div>
+    </StyledFooter>
+  );
 }
