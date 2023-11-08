@@ -18,7 +18,7 @@ async function getOnePost(postID: string) {
       process.env.NODE_ENV === "development"
         ? "http://localhost:4000"
         : "https://orion-blog-backend.onrender.com"
-    }/getOnePost?id=${postID}`
+    }/posts/getOnePost?id=${postID}`
   ).then((res) => res.json());
 
   return resposta;
