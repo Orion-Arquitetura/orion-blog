@@ -1,13 +1,25 @@
 import { useQuery } from "@tanstack/react-query";
 
 async function getAllPosts() {
-  const resposta = await fetch("http://localhost:4000/posts/getAllPosts").then((res) => res.json());
+  const resposta = await fetch(
+    `${
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:4000"
+        : "https://orion-blog-backend.onrender.com"
+    }/posts/getAllPosts`
+  ).then((res) => res.json());
 
   return resposta;
 }
 
 async function getOnePost(postID: string) {
-  const resposta = await fetch(`http://localhost:4000/posts/getOnePost?id=${postID}`).then((res) => res.json());
+  const resposta = await fetch(
+    `${
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:4000"
+        : "https://orion-blog-backend.onrender.com"
+    }/getOnePost?id=${postID}`
+  ).then((res) => res.json());
 
   return resposta;
 }
