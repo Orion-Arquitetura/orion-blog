@@ -29,6 +29,14 @@ export default function PostsGrid() {
 
     const { data: posts, isLoading } = useGetAllPosts();
 
+    function convertDriveUrl(url: string) {
+        const startIdx = url.indexOf("https://drive.google.com/file/d/") + "https://drive.google.com/file/d/".length;
+        const endIdx = url.indexOf("/view?");
+        const fileId = url.substring(startIdx, endIdx);
+        const convertedUrl = `https://drive.google.com/uc?export=view&id=${fileId}`;
+        return convertedUrl;
+    }
+
     return (
         <StyledGrid>
             {!isLoading &&
@@ -38,7 +46,7 @@ export default function PostsGrid() {
                             key={post.titulo}
                             titulo={post.titulo}
                             data={formatDate(post.createdAt)}
-                            imagem={post.imagemBanner}
+                            imagem={convertDriveUrl(post.imagemBanner)}
                             resumo={post.resumo}
                             _id={post._id}
                         />
