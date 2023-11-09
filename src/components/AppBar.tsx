@@ -64,7 +64,7 @@ const StyledAppBar = styled.div`
 
   @media (max-width: 1000px) {
     padding-inline: 20px;
-    position: relative;
+    position: sticky;
     justify-content: center;
     background-color: black;
 
@@ -145,18 +145,18 @@ export default function AppBar() {
                 <nav>
                     <ul>
                         <li>
-                            <Link href="/">BLOG</Link>
+                            <Link href="/" onClick={() => setMobileMenuOpen(false)}>BLOG</Link>
                         </li>
                         <li>
-                            <Link href="#">NA MÍDIA</Link>
+                            <Link href="#" onClick={() => setMobileMenuOpen(false)}>NA MÍDIA</Link>
                         </li>
                         <li>
-                            <Link href="https://orionarquitetura.com.br" target="_blank">
+                            <Link href="https://orionarquitetura.com.br" target="_blank" onClick={() => setMobileMenuOpen(false)}>
                                 ORION.COM
                             </Link>
                         </li>
                         <li>
-                            <Link href="#">CONTATO</Link>
+                            <Link href="#" onClick={() => setMobileMenuOpen(false)}>CONTATO</Link>
                         </li>
                     </ul>
                 </nav>

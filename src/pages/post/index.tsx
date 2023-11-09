@@ -114,6 +114,10 @@ const StyledSection = styled.section`
       flex-direction: column-reverse;
       row-gap: 20px;
     }
+
+    .banner-image-wrapper {
+      height: 40vh;
+    }
   }
 `;
 

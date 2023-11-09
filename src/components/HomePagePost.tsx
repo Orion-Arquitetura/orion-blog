@@ -9,7 +9,7 @@ const StyledPost = styled.li`
   display: flex;
   flex-direction: column;
   row-gap: 16px;
-  max-height: 400px;
+  max-height: fit-content;
   overflow: hidden;
   justify-content: space-between;
 

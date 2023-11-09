@@ -2,6 +2,7 @@
 import styled from "styled-components";
 import NewsletterForm from "./NewsletterForm";
 import { useState } from "react";
+import { Post } from "@/types/types";
 
 const StyledAside = styled.aside`
   position: sticky;
@@ -82,33 +83,9 @@ const StyledAside = styled.aside`
   }
 `;
 
-export default function Aside() {
-  const [postsDestaque, setPostsDestaque] = useState([
-    {
-      data: "24/10/2023",
-      titulo: "Tendências em Design Hospitalar",
-      imagem:
-        "https://images.pexels.com/photos/7089336/pexels-photo-7089336.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      resumo:
-        "Este post explora as tendências atuais em design hospitalar, incluindo o uso de cores, materiais e tecnologias inovadoras para criar espaços mais acolhedores e eficientes para os pacientes.",
-    },
-    {
-      data: "23/10/2023",
-      titulo: "A Importância da Acessibilidade em Hospitais",
-      imagem:
-        "https://images.pexels.com/photos/7335565/pexels-photo-7335565.jpeg?auto=compress&cs=tinysrgb&w=600",
-      resumo:
-        "Neste artigo, discutimos a importância da acessibilidade em hospitais e como o design inclusivo pode melhorar a experiência de pacientes com mobilidade reduzida.",
-    },
-    {
-      data: "22/10/2023",
-      titulo: "Inovações em Tecnologia Hospitalar",
-      imagem:
-        "https://images.pexels.com/photos/11722768/pexels-photo-11722768.jpeg?auto=compress&cs=tinysrgb&w=600",
-      resumo:
-        "Descubra as últimas inovações em tecnologia hospitalar, incluindo sistemas de informação, dispositivos médicos avançados e como eles estão transformando o setor de saúde.",
-    },
-  ]);
+export default function Aside({ posts }: { posts: { data: Post[] } }) {
+
+  const postsDestaque = posts.data.filter((post) => post.emDestaque);
 
   return (
     <StyledAside>

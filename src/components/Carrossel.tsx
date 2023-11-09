@@ -1,3 +1,4 @@
+import { Post } from "@/types/types";
 import Link from "next/link";
 import { useState } from "react";
 import styled from "styled-components";
@@ -85,31 +86,7 @@ const StyledCarrossel = styled.div`
   }
 `;
 
-export default function Carrossel() {
-  const [carrosselPosts, setPosts] = useState([
-    {
-      img: "https://orionarquitetura.com.br/wp-content/uploads/2022/12/orion-arquitetura-hospitalar-no-rj-enfermaria-multiprofissional-jpg-124.jpg",
-      title: "Projeto de Enfermaria Multiprofissional",
-      date: "24/10/2023",
-      description: "Este projeto de enfermaria multiprofissional visa melhorar o ambiente hospitalar, proporcionando um espaço confortável e funcional para pacientes e equipes médicas. Saiba mais sobre como a arquitetura hospitalar pode transformar o atendimento de saúde.",
-      url: "/posts"
-    },
-    {
-      img: "https://orionarquitetura.com.br/wp-content/uploads/2022/12/orion-arquitetura-hospitalar-no-rj-consultorio-de-pediatria-jpg-124.jpg",
-      title: "Design Inovador para Consultório de Pediatria",
-      date: "20/10/2023",
-      description: "Descubra como o design arquitetônico inovador está sendo aplicado para criar consultórios de pediatria acolhedores e amigáveis para crianças, proporcionando um ambiente de tratamento seguro e agradável.",
-      url: "/posts"
-    },
-    {
-      img: "https://orionarquitetura.com.br/wp-content/uploads/2022/12/orion-arquitetura-hospitalar-no-rj-biomedicina-estetica-capa-jpg-124.jpg",
-      title: "Estética e Funcionalidade na Biomedicina Estética",
-      date: "14/07/2023",
-      description: "A integração de estética e funcionalidade é fundamental na arquitetura de espaços para biomedicina estética. Saiba como a arquitetura hospitalar desempenha um papel importante na criação de clínicas de beleza modernas e eficientes.",
-      url: "/posts"
-    }
-  ]);
-
+export default function Carrossel({ posts }: { posts: { data: Post[] } }) {
   function slide(ev: any) {
     const carrossel = document.querySelector(".carrossel-overflow") as HTMLDivElement;
     const panelWidth = carrossel.querySelector(".carrossel-item")!.scrollWidth as number;
@@ -118,15 +95,27 @@ export default function Carrossel() {
       carrossel.scrollBy({
         left: panelWidth,
         behavior: "smooth",
-      })
-      return
+      });
+      return;
     }
 
     carrossel.scrollBy({
       left: -panelWidth,
-      behavior: "smooth"
-    })
+      behavior: "smooth",
+    });
   }
+
+  function formatDate(date: string) {
+    const data = new Date(date);
+    const day = data.getDate().toString().padStart(2, "0");
+    const month = (data.getMonth() + 1).toString().padStart(2, "0");
+    const year = data.getFullYear();
+
+    const brazilDate = `${day}/${month}/${year}`;
+    return brazilDate;
+  }
+
+  const postsDestaque = posts.data.filter((post) => post.emDestaque);
 
   return (
     <StyledCarrossel>
@@ -134,23 +123,40 @@ export default function Carrossel() {
         <div className="carrossel-overflow">
           <button className="button-left" value="left" onClick={slide} />
           <button className="button-right" value="right" onClick={slide} />
-          {carrosselPosts.map((post) => {
-            return (
+          {postsDestaque.length === 0 ? (
+            <>
               <div
                 className="carrossel-item"
-                key={post.title}
-                style={{ backgroundImage: `url(${post.img})` }}
+                style={{ backgroundImage: `url("/SIMBOLO_ORION.png")`, backgroundSize: "contain" }}
               >
-                <Link className="carrossel-item-link-backdrop" href={post.url}>
-                  <div className="carrossel-item-link-data">
-                    <p>{post.description}</p>
-                    <h2>{post.title}</h2>
-                    <small>{post.date}</small>
-                  </div>
-                </Link>
+                <div className="carrossel-item-link-backdrop">
+
+                </div>
               </div>
-            );
-          })}
+            </>
+          ) : (
+            postsDestaque.map((post) => {
+              if (!post.emDestaque) {
+                return null;
+              }
+
+              return (
+                <div
+                  className="carrossel-item"
+                  key={post.titulo}
+                  style={{ backgroundImage: `url(${post.imagemBanner})` }}
+                >
+                  <Link className="carrossel-item-link-backdrop" href={`/post?id=${post._id}`}>
+                    <div className="carrossel-item-link-data">
+                      <p>{post.resumo}</p>
+                      <h2>{post.titulo}</h2>
+                      <small>{formatDate(post.createdAt)}</small>
+                    </div>
+                  </Link>
+                </div>
+              );
+            })
+          )}
         </div>
       </div>
     </StyledCarrossel>
