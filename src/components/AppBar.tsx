@@ -125,8 +125,27 @@ const StyledAppBar = styled.div`
       span {
         background-color: white;
         height: 10%;
-        width: 100%;
+        width: 90%;
         border: none;
+        transition: translate 0.3s linear, rotate 0.3s linear, scale 0.2s linear 0.3s;
+        transform-origin: center;
+      }
+
+      &.open {
+        span:nth-of-type(1) {
+          translate: 0 450%;
+          rotate: 0.12turn;
+        }
+
+        span:nth-of-type(2) {
+          scale: 0 1;
+        }
+
+        span:nth-of-type(3) {
+          rotate: -0.12turn;
+          translate: 0 -450%;
+
+        }
       }
     }
   }
@@ -164,7 +183,7 @@ export default function AppBar() {
                 <button className="search-button" />
             </div>
 
-            <button className={`mobile-menu-button`} onClick={() => setMobileMenuOpen((prev) => !prev)}>
+            <button className={`mobile-menu-button ${mobileMenuOpen ? "open" : ""}`} onClick={() => setMobileMenuOpen((prev) => !prev)}>
                 <span />
                 <span />
                 <span />
