@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import styled from "styled-components";
 import NewsletterForm from "./NewsletterForm";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Post } from "@/types/types";
+import { PostsContext } from "@/contexts/postsContext";
 
 const StyledAside = styled.aside`
   position: sticky;
@@ -83,9 +84,12 @@ const StyledAside = styled.aside`
   }
 `;
 
-export default function Aside({ posts }: { posts: { data: Post[] } }) {
+export default function Aside() {
+  const { postsDestaques, isLoading } = useContext(PostsContext)
 
-  const postsDestaque = posts.data.filter((post) => post.emDestaque);
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
 
   return (
     <StyledAside>
@@ -115,10 +119,10 @@ export default function Aside({ posts }: { posts: { data: Post[] } }) {
         <h3>POSTS EM DESTAQUE</h3>
 
         <ul className="posts-destaque-list">
-          {postsDestaque.map((post) => {
+          {postsDestaques.map(post => {
             return (
               <li key={post.titulo} className="destaque-post">
-                <a href={"#"}>
+                <a href={`/post?id=${post._id}`}>
                   <h4>{post.titulo}</h4>
                 </a>
                 <p>{post.resumo.length > 150 ? post.resumo.slice(0, 150) + "..." : post.resumo}</p>

@@ -1,3 +1,4 @@
+import { Post } from "@/types/types";
 import { useQuery } from "@tanstack/react-query";
 
 async function getAllPosts() {
@@ -9,7 +10,7 @@ async function getAllPosts() {
     }/posts/getAllPosts`
   ).then((res) => res.json());
 
-  return resposta;
+  return resposta as { error: boolean; message: string; data: Post[] };
 }
 
 async function getOnePost(postID: string) {

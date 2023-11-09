@@ -1,6 +1,7 @@
+import { PostsContext } from "@/contexts/postsContext";
 import { Post } from "@/types/types";
 import Link from "next/link";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
 
 const StyledCarrossel = styled.div`
@@ -86,7 +87,7 @@ const StyledCarrossel = styled.div`
   }
 `;
 
-export default function Carrossel({ posts }: { posts: { data: Post[] } }) {
+export default function Carrossel() {
   function slide(ev: any) {
     const carrossel = document.querySelector(".carrossel-overflow") as HTMLDivElement;
     const panelWidth = carrossel.querySelector(".carrossel-item")!.scrollWidth as number;
@@ -115,7 +116,7 @@ export default function Carrossel({ posts }: { posts: { data: Post[] } }) {
     return brazilDate;
   }
 
-  const postsDestaque = posts.data.filter((post) => post.emDestaque);
+  const { postsDestaques, isLoading } = useContext(PostsContext)
 
   return (
     <StyledCarrossel>
@@ -123,7 +124,7 @@ export default function Carrossel({ posts }: { posts: { data: Post[] } }) {
         <div className="carrossel-overflow">
           <button className="button-left" value="left" onClick={slide} />
           <button className="button-right" value="right" onClick={slide} />
-          {postsDestaque.length === 0 ? (
+          {(postsDestaques.length === 0) || isLoading ? (
             <>
               <div
                 className="carrossel-item"
@@ -135,7 +136,7 @@ export default function Carrossel({ posts }: { posts: { data: Post[] } }) {
               </div>
             </>
           ) : (
-            postsDestaque.map((post) => {
+            postsDestaques.map(post => {
               if (!post.emDestaque) {
                 return null;
               }

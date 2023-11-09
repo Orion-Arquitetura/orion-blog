@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
 import HomePagePost from "./HomePagePost";
-import { useGetAllPosts } from "@/hooks/posts";
 import { Post } from "@/types/types";
+import { PostsContext } from "@/contexts/postsContext";
 
 const StyledGrid = styled.ul`
   display: flex;
@@ -17,7 +17,7 @@ const StyledGrid = styled.ul`
   }
 `;
 
-export default function PostsGrid({ posts }: { posts: { data: Post[] } }) {
+export default function PostsGrid() {
     function formatDate(date: string) {
         const data = new Date(date);
         const day = data.getDate().toString().padStart(2, "0");
@@ -28,9 +28,15 @@ export default function PostsGrid({ posts }: { posts: { data: Post[] } }) {
         return brazilDate;
     }
 
+    const { posts, isLoading } = useContext(PostsContext)
+
+    if (isLoading) {
+        return <div>Carregando...</div>
+    }
+
     return (
         <StyledGrid>
-            {posts.data.map((post: Post) => {
+            {posts.map((post: Post) => {
                 return (
                     <HomePagePost
                         key={post.titulo}

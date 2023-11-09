@@ -1,7 +1,6 @@
 import Aside from "@/components/Aside";
 import Carrossel from "@/components/Carrossel";
 import PostsGrid from "@/components/PostsGrid";
-import { useGetAllPosts } from "@/hooks/posts";
 import styled from "styled-components";
 
 const StyledGrid = styled.div`
@@ -19,18 +18,12 @@ const StyledGrid = styled.div`
 `;
 
 export default function Home() {
-  const { data: posts, isLoading } = useGetAllPosts()
-
-  if (isLoading) {
-    return <div>Loading...</div>
-  }
-
   return (
     <>
-      <Carrossel posts={posts} />
+      <Carrossel />
       <StyledGrid>
-        <PostsGrid posts={posts} />
-        <Aside posts={posts} />
+        <PostsGrid />
+        <Aside />
       </StyledGrid>
     </>
   )
