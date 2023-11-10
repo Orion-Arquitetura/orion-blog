@@ -149,7 +149,10 @@ export default function Carrossel() {
                 >
                   <Link className="carrossel-item-link-backdrop" href={`/post?id=${post._id}`}>
                     <div className="carrossel-item-link-data">
-                      <p>{post.resumo.substring(0, 40)}</p>
+                      <p>
+                        {post.resumo.substring(0, 200)}
+                        {post.resumo.length > 200 ? "..." : ""}
+                      </p>
                       <h2>{post.titulo}</h2>
                       <small>{formatDate(post.createdAt)}</small>
                     </div>
